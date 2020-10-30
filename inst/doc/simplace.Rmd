@@ -69,8 +69,7 @@ The usage of <span style="font-variant:small-caps;">Simplace</span> in R follows
 - Package `rJava` should be installed automatically with `simplace`. If not, install it manually:  
 `install.packages('rJava')`
 - Architecture of R and Java have to match. If you are using 64-bit Java, you have to use 64-bit R.
-- If you want to use the development version instead of the console mode, make sure that the projects `simplace`, `lap`, `simplacerun` and `lapclient` are in a common directory and set the installation dir to this directory.
-
+- If you want to use the development version instead of the console mode, make sure that the projects `simplace_core`, `simplace_modules` and optionally `simplace_run`  are in a common directory and set the installation dir to this directory.
 
 # Example
 
