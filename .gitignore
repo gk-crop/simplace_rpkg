@@ -1,0 +1,7 @@
+Meta
+doc
+.Rbuildignore
+log
+*.Rproj
+.Rproj.user
+.Rhistory
