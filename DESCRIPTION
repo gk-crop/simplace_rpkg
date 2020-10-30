@@ -1,0 +1,19 @@
+Package: simplace
+Type: Package
+Title: Interface to use the modelling framework SIMPLACE
+Version: 4.3.0
+Date: 2020-10-30
+Encoding: UTF-8
+Author: Gunther Krauss
+Maintainer: Gunther Krauss <guntherkrauss@uni-bonn.de>
+Description: Interface to interact with the modelling framework SIMPLACE and to
+    parse the results of simulations.
+License: GPL-2
+SystemRequirements: Java (>= 8.0)
+Imports:
+    rJava (>= 0.9-6)
+LazyLoad: yes
+VignetteBuilder: knitr
+Suggests:
+    knitr
+RoxygenNote: 7.1.1

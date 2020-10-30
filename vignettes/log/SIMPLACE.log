@@ -1,0 +1,20 @@
+2020-10-30 17:02:58,344 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: crop.FRTTB. Please use variable NitrogenDemand.cRootsPartitioningTableDVS for x and NitrogenDemand.cRootsPartitioningTableFraction for y values
+2020-10-30 17:02:58,345 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: ndemand.NMaxConcentrationLeaves. Please use variable NitrogenDemand.cNMaxTableDVS for x and NitrogenDemand.cNMaxTableConcentration for y values
+2020-10-30 17:02:58,345 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: ndemand.NAbsorptionReduction. Please use variable NitrogenDemand.cNAbsorptionTableNNI for x and NitrogenDemand.cNAbsorptionTableFactor for y values
+2020-10-30 17:02:58,352 WARN  [net.simplace.sim.components.soil.soilcn.SoilCN] Initialization : nr of soil layer not consistent between SoilW and SoilCN parameter files for inital.CellosesoilC. SoilW : 40 vs SoilCN : 50  [01.01.1991]
+2020-10-30 17:02:58,355 INFO  [net.simplace.sim.components.soil.soilcn.SoilCN] Initialization : Model Option WaterEffectSwitch with value : On
+2020-10-30 17:02:58,358 INFO  [net.simplace.sim.FWSimSimulation] Initialized Simulation: testproject_00__TESTSIMULATION_0000000
+2020-10-30 17:02:58,360 INFO  [net.simplace.sim.model.FWSimModel] Running Model in Year: 1991: testproject_00__TESTSIMULATION_0000000
+2020-10-30 17:02:58,451 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: crop.FSTTB. Please use variable LintulPartitioning.cStemsPartitioningTableDVS for x and LintulPartitioning.cStemsPartitioningTableFraction for y values
+2020-10-30 17:02:58,451 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: crop.FSOTB. Please use variable LintulPartitioning.cStorageOrgansPartitioningTableDVS for x and LintulPartitioning.cStorageOrgansPartitioningTableFraction for y values
+2020-10-30 17:02:58,451 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: crop.FLVTB. Please use variable LintulPartitioning.cLeavesPartitioningTableDVS for x and LintulPartitioning.cLeavesPartitioningTableFraction for y values
+2020-10-30 17:02:58,451 INFO  [net.simplace.sim.components.util.InterpolationTable] You are using old interpolation table style: crop.RDRT. Please use variable LintulBiomass.cRDRLeavesTableMeanTemperature for x and LintulBiomass.cRDRLeavesTableRelativeRate for y values
+2020-10-30 17:02:59,108 INFO  [net.simplace.sim.model.FWSimModel] Running Model in Year: 1992: testproject_00__TESTSIMULATION_0000000
+2020-10-30 17:02:59,525 INFO  [net.simplace.sim.FWSimSimulation] Ended Simulation: testproject_00__TESTSIMULATION_0000000 in 1166 ms.
+2020-10-30 17:02:59,541 INFO  [net.simplace.sim.FWSimProject] Finished 0% in Threadpool of Project: testproject with 1 finished simulations and 1 finished threads
+2020-10-30 17:03:02,064 INFO  [net.simplace.sim.io.FilePool] CloseFile: d:\java\simplace\simplace_run\output\gk\complete\biomass_testproject.csv
+2020-10-30 17:03:02,071 INFO  [net.simplace.sim.io.FilePool] CloseFile: d:\java\simplace\simplace_run\output\gk\complete\soilcn.csv
+2020-10-30 17:03:02,078 INFO  [net.simplace.sim.io.FilePool] CloseFile: d:\java\simplace\simplace_run\output\gk\complete\stat_yieldsummary.csv
+2020-10-30 17:03:02,079 INFO  [net.simplace.sim.io.FilePool] CloseFile: d:\java\simplace\simplace_run\output\gk\complete\yieldsummary.csv
+2020-10-30 17:03:02,088 INFO  [net.simplace.sim.io.FilePool] CloseFile: d:\java\simplace\simplace_run\output\gk\complete\plantnitrogen.csv
+2020-10-30 17:03:02,119 INFO  [net.simplace.sim.io.FilePool] CloseFile: d:\java\simplace\simplace_run\output\gk\complete\water.csv

@@ -1,0 +1,98 @@
+Version 4.3.0
+* Compatible with Simplace 4.3
+* WorkDir and OutputDir are now optional parameters
+* Added function to autodetect Simplace installation
+
+Version 4.2.4
+* Bugfix to avoid deprecation warning
+
+Version 4.2.3
+* Possibilty to perform simulation step on all/specific queued simulations 
+* Data and ProjectDir defaults to WorkDir, not to simplace server
+
+Version 4.2.2
+* createSimulation: set queue switch by default to FALSE
+
+Version 4.2.1
+* Bugfix: queue switch of createSimulation now works correct
+
+Version 4.2
+* Compatible with Simplace 4.2
+* Added methods to set (and get) directories used by simplace
+
+Version 4.1
+* Compatible with Simplace 4.1
+
+Version 4.0
+* Compatible with Simplace 4.0
+* Same version number as Simplace version 
+
+Version 0.99
+* Adds automatically all jars from simplace/lib to classpath
+* Package documentation created automatically via roxygen2
+
+Version 0.98
+* Compatible with Simplace 3.3
+
+Version 0.97
+* added setSimulationValues function
+
+Version 0.96
+* small bugfix in initSimplace function
+
+Version 0.95
+* Compatible with Simplace 3.2
+* removed parameter updateresources from function runSimulations
+
+Version 0.94
+* Added force.init option to initSimplace
+
+Version 0.93
+* Compatible with Simplace 3.1
+* Faster conversion of memory output to R objects 
+
+Version 0.92
+* Added additional jars to the classpath
+* Get vector with the units of the result columns
+
+Version 0.91
+* Refactoring & cleanup of code
+
+Version 0.90
+* Compatible with Simplace V3.0
+* initSimplace optionally accepts a list of additional classpaths
+* initSimplace optionally accepts parameters that are passed to the java virtual machine
+* setLogLevel to control the verbosity of the logging
+
+Version 0.85
+* Compatible with Simplace V2.2
+
+Version 0.8
+* Compatible with Simplace V2.1
+
+Version 0.7
+* Build for R 3.1.0
+
+Version 0.6
+* Compatible with Simplace 2.0
+
+Version 0.5
+* Updated documentation
+* Bugfix: Parsing Boolean values from the result
+
+
+Version 0.4
+* Updated vignette
+
+
+Version 0.3
+* Updated documentation
+* Returns the id of the created simulation
+
+
+Version 0.2
+* Version submitted initially to R-Forge
+
+
+Version 0.1
+* Just a proof of concept
