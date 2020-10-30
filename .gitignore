@@ -1,7 +1,8 @@
-Meta
-doc
+/Meta
+/doc
 .Rbuildignore
-log
+/log
 *.Rproj
-.Rproj.user
+/.Rproj.user
 .Rhistory
+/vignettes/log

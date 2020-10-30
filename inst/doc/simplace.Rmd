@@ -1,0 +1,143 @@
+---
+title: "Interface to use Simplace from R"
+author: "Gunther Krauss"
+date: "`r Sys.setlocale('LC_ALL','English');format(Sys.Date(),format='%B %d, %Y')`"
+output: 
+  pdf_document: 
+    number_sections: yes
+  rmarkdown::html_vignette:
+    number_sections: yes
+    fig-width: 7
+    fig-height: 6
+  
+
+vignette: >
+  %\VignetteIndexEntry{Simplace}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+
+---
+
+# Introduction
+This package provides methods to interact with the modelling framework <span style="font-variant:small-caps;">Simplace</span>^[
+**S**<span style="font-variant:small-caps;">cientific</span> 
+**I**<span style="font-variant:small-caps;">mpact assessment and</span> 
+**M**<span style="font-variant:small-caps;">odelling</span>
+**PL**<span style="font-variant:small-caps;">atform for</span> 
+**A**<span style="font-variant:small-caps;">dvanced</span> 
+**C**<span style="font-variant:small-caps;">rop and</span> 
+**E**<span style="font-variant:small-caps;">cosystem management</span>. 
+See [www.simplace.net](http://www.simplace.net/) for more information on Simplace]. Simplace is written in Java (and some parts in Scala) so one can access it from `R` via `rJava`. The purpose of this package is to simplify the interaction between R and Simplace, by providing functions to:
+
+- initialize and configure Simplace
+- load a simulation (solution and project)
+- parameterize the simulation
+- run whole simulation or run it stepwise
+- get simulation output and convert it to formats suitable for R
+
+
+# Installing the Simplace Framework
+For installing <span style="font-variant:small-caps;">Simplace</span>, please consult the webpage [www.simplace.net](http://www.simplace.net/).
+A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
+
+- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [java.com](http://java.com)
+- Download the console mode of <span style="font-variant:small-caps;">Simplace</span> from [www.simplace.net](http://www.simplace.net/Joomla/index.php/download)
+- Unpack the zip archive to your disk. You have to unpack the whole directory `SIMPLACE` and the directory must not be renamed.
+- Install the `simplace` package in R:  
+
+``` {r eval=FALSE}
+install.packages('simplace', 
+   repos=c('http://r-forge.r-project.org','http://cran.r-project.org'))
+```
+
+
+
+# Basic Usage
+
+The usage of <span style="font-variant:small-caps;">Simplace</span> in R follows roughly this scheme:
+
+- init <span style="font-variant:small-caps;">Simplace</span> by providing the path to your simplace installation directory, your working directory and your outputs
+- open a <span style="font-variant:small-caps;">Simplace</span> project form a solution (and project) file
+- create a list of simulation parameters you want to change
+- create and run a Simulation
+- get the result from the simulation
+- convert the result to a R object (`data.frame`, `list` etc.)
+
+
+# Troubleshooting
+
+- Package `rJava` should be installed automatically with `simplace`. If not, install it manually:  
+`install.packages('rJava')`
+- Architecture of R and Java have to match. If you are using 64-bit Java, you have to use 64-bit R.
+- If you want to use the development version instead of the console mode, make sure that the projects `simplace`, `lap`, `simplacerun` and `lapclient` are in a common directory and set the installation dir to this directory.
+
+
+# Example
+
+## Run the simulation
+
+```{r running, results='hide'}
+library(simplace)
+SimplaceInstallationDir <- findSimplaceInstallations()
+
+Solution <- paste(SimplaceInstallationDir,
+        "simplace_run/simulation/gk/solution/complete/Complete.sol.xml",sep="")
+
+simplace <- initSimplace(SimplaceInstallationDir)
+
+openProject(simplace, Solution)
+
+parameter <- list()
+parameter$enddate <- "31-12-1992"
+
+sid <- createSimulation(simplace,parameter)
+runSimulations(simplace)
+
+result <- getResult(simplace,"DIAGRAM_OUT", sid);
+
+closeProject(simplace)
+```
+
+After specifying the directories and the solution, the framework is initialized and the project opened. The end date of the simulation is (re)set and the simulation is run. After the run the result is retrieved.
+
+\newpage
+
+## Get the result and plot it
+
+```{r plotting, fig.height=5, fig.width=6}
+resf <- resultToDataframe(result)
+
+dates <- 300:730
+weights <- resf[dates,
+    c("TOP_LINE_Roots","TOP_LINE_Leaves","TOP_LINE_Stems","TOP_LINE_StorageOrgans")]
+matplot(dates,weights,type="l",xlab="Days",ylab="Weight [g/m2]",main="Simulated Biomass")
+legend(300,800,legend=c("Roots","Leaves","Stems","Storage Organs"),lty=1:4,col=1:4)
+
+```
+
+The result is converted to a dataframe. Interesting variables are extracted and then plotted.
+
+
+\newpage
+
+## Get arrays and plot them as contour plot
+
+
+```{r contourplot, fig.height=5, fig.width=6}
+resultlistexp <- resultToList(result,expand=TRUE)
+water <- resultlistexp$BOTTOM_ARRAY_VolumetricWaterContent
+wmat <- do.call(rbind,water)
+wmatpart <- wmat[dates,]
+layers <- dim(wmatpart)[2]
+filled.contour(dates,-(layers:1),wmatpart[,layers:1],
+               xlab="Day", ylab="Layer", main="Water content in soil",
+               color.palette = function(n){rgb((n:1)/n,(n:1)/n,1)})
+
+```
+
+
+As the result contains an array which holds the water content for 40 layers, it is transformed to a list and the array is expanded.
+
+
+\newpage
+\tableofcontents
