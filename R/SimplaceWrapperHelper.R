@@ -1,8 +1,8 @@
-#' Search for simplace installation
+#' Search for simplace installations and returns results as vector
 #' 
 #' Checks directories if they contain simplace_core, simplace_modules and 
 #' optionally simplace_run (or a data directory given by the user) and returns
-#' the first match (or optionally all matches).
+#' the matches.
 #' There is no check whether the installation is really working.  
 #' 
 #' Beside the checks for some standard directories (like home directory, current
@@ -17,13 +17,13 @@
 #' @param verbose prints messages if no or more than one installation found
 #' @return matching directory/ies as character vector
 #' @export
-findSimplaceInstallations <- function (directories=c(), 
-                                       tryStandardDirs=TRUE,
-                                       firstMatchOnly = TRUE, 
+findSimplaceInstallations <- function (directories = c(), 
+                                       tryStandardDirs = TRUE,
+                                       firstMatchOnly = FALSE, 
                                        simulationsDir = "simplace_run",
                                        ignoreSimulationsDir = FALSE,
-                                       verbose=TRUE
-                                       )
+                                       verbose = TRUE
+)
 {
   parents <- c(path.expand("~"),"d:","c:","e:","f:","g:",getwd())
   subdirs <- c("workspace/","simplace/","java/simplace/")
@@ -43,9 +43,45 @@ findSimplaceInstallations <- function (directories=c(),
   }
   if(verbose & length(found)>1 & firstMatchOnly)
   {
-    message("Found more than one Simplace installation. Returning the first one. To get all installations, please use the option allmatches=TRUE")
+    message("Found more than one Simplace installation. Returning the first one.")
   }
   
   ifelse(firstMatchOnly & length(found)>0,found[1],found)
+  
+}
+
+
+
+
+#' Search for simplace installation and returns first match
+#' 
+#' Checks directories if they contain simplace_core, simplace_modules and 
+#' optionally simplace_run (or a data directory given by the user) and returns
+#' the first match.
+#' There is no check whether the installation is really working.  
+#' 
+#' Beside the checks for some standard directories (like home directory, current
+#' working dir and drives c: to g:) and their subdirectories (workspace, simplace,
+#' java/simplace) the user can give a vector of additional directories. Directories 
+#' given by the user are checked first.
+#' 
+#' @param directories a list of additional directories where to look - 
+#' @param tryStandardDirs whether to check for typical installation directories (default)
+#' @param simulationsDir directory that contains user simulations (e.g. simplace_run)
+#' @param ignoreSimulationsDir don't check for the simulation dir
+#' @return matching directory/ies as character vector
+#' @export
+findFirstSimplaceInstallation <- function (directories = c(), 
+                                       tryStandardDirs = TRUE,
+                                       simulationsDir = "simplace_run",
+                                       ignoreSimulationsDir = FALSE
+                                       )
+{
+  findSimplaceInstallations(directories = directories,
+                            tryStandardDirs = tryStandardDirs,
+                            simulationsDir = simulationsDir,
+                            firstMatchOnly = TRUE,
+                            ignoreSimulationsDir = ignoreSimulationsDir,
+                            verbose = FALSE)
   
 }

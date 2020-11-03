@@ -2,6 +2,7 @@
 
 export(closeProject)
 export(createSimulation)
+export(findFirstSimplaceInstallation)
 export(findSimplaceInstallations)
 export(getResult)
 export(getSimplaceDirectories)

@@ -2,12 +2,12 @@
 % Please edit documentation in R/SimplaceWrapperHelper.R
 \name{findSimplaceInstallations}
 \alias{findSimplaceInstallations}
-\title{Search for simplace installation}
+\title{Search for simplace installations and returns results as vector}
 \usage{
 findSimplaceInstallations(
   directories = c(),
   tryStandardDirs = TRUE,
-  firstMatchOnly = TRUE,
+  firstMatchOnly = FALSE,
   simulationsDir = "simplace_run",
   ignoreSimulationsDir = FALSE,
   verbose = TRUE
@@ -32,7 +32,7 @@ matching directory/ies as character vector
 \description{
 Checks directories if they contain simplace_core, simplace_modules and 
 optionally simplace_run (or a data directory given by the user) and returns
-the first match (or optionally all matches).
+the matches.
 There is no check whether the installation is really working.
 }
 \details{
