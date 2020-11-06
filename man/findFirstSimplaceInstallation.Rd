@@ -32,5 +32,6 @@ There is no check whether the installation is really working.
 \details{
 Beside the checks for some standard directories (like home directory, current
 working dir and drives c: to g:) and their subdirectories (workspace, simplace,
-java/simplace) the user can give a vector of additional directories.
+java/simplace) the user can give a vector of additional directories. Directories 
+given by the user are checked first.
 }

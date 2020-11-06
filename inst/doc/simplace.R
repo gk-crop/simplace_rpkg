@@ -4,7 +4,7 @@
 
 ## ----running, results='hide'--------------------------------------------------
 library(simplace)
-SimplaceInstallationDir <- findSimplaceInstallations()
+SimplaceInstallationDir <- findFirstSimplaceInstallation()
 
 Solution <- paste(SimplaceInstallationDir,
         "simplace_run/simulation/gk/solution/complete/Complete.sol.xml",sep="")

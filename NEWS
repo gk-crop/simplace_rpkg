@@ -1,3 +1,6 @@
+Version 4.3.1
+* Refactored Simplace autodetection mechanism
+
 Version 4.3.0
 * Compatible with Simplace 4.3
 * WorkDir and OutputDir are now optional parameters
