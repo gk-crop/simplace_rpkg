@@ -127,7 +127,7 @@ initSimplace <- function(InstallationDir,
 openProject <- function (simplace, solution, project=nullString, parameterList=NULL)
 {
   paramObject <- parameterListToStringArray(parameterList)
-  rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution);
+  rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution, paramObject);
 }
 
 
