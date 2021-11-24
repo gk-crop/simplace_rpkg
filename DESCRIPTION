@@ -1,8 +1,8 @@
 Package: simplace
 Type: Package
 Title: Interface to Use the Modelling Framework SIMPLACE
-Version: 4.3.5
-Date: 2021-07-13
+Version: 4.4.0
+Date: 2021-11-24
 Encoding: UTF-8
 Author: Gunther Krauss
 Maintainer: Gunther Krauss <guntherkrauss@uni-bonn.de>
@@ -16,4 +16,4 @@ LazyLoad: yes
 VignetteBuilder: knitr
 Suggests:
     knitr, rmarkdown
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

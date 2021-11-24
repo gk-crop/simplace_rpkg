@@ -1,3 +1,15 @@
+Version 4.4.0
+* Compatible with Simplace 4.4
+* Forward compatibility with upcoming Simplace 4.5
+* OpenProject can override variables (Simplace version >= 4.5)
+* getResults - parameter simulationId optional (Simplace version >=4.5)
+
+Version 4.3.5
+* Fix for rebuilding vignette
+
+Version 4.3.4
+* Restored previous vignette mechanism as the locally created has not been included
+
 Version 4.3.3
 * Use vignette created locally to include outputs/graphs (corrected .Rbuildignore)
 

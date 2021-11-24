@@ -4,7 +4,7 @@
 \alias{getResult}
 \title{Fetch output from a simulation}
 \usage{
-getResult(simplace, outputId, simulationId)
+getResult(simplace, outputId, simulationId = nullString)
 }
 \arguments{
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}

@@ -121,10 +121,12 @@ initSimplace <- function(InstallationDir,
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param solution solution file with absolute path
 #' @param project project file with absolute path, can be omitted to run solution only
+#' @param parameterList a list with the parameter name as key and parametervalue as value
 #' @seealso \code{\link{closeProject}}
 #' @export
-openProject <- function (simplace, solution, project=nullString)
+openProject <- function (simplace, solution, project=nullString, parameterList=NULL)
 {
+  paramObject <- parameterListToStringArray(parameterList)
   rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution);
 }
 
@@ -400,7 +402,7 @@ getSimulationIDs <- function(simplace)
 #' @param simulationId id of the simulation
 #' @return handle to the data container which has to be processed afterwards
 #' @export
-getResult <- function(simplace, outputId, simulationId)
+getResult <- function(simplace, outputId, simulationId = nullString)
 {
   rJava::.jcall(simplace,"Lnet/simplace/sim/wrapper/DataContainer;","getResult",outputId, simulationId);
 }

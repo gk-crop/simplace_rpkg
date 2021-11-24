@@ -4,7 +4,7 @@
 \alias{openProject}
 \title{Opens a Simplace project}
 \usage{
-openProject(simplace, solution, project = nullString)
+openProject(simplace, solution, project = nullString, parameterList = NULL)
 }
 \arguments{
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}
@@ -12,6 +12,8 @@ openProject(simplace, solution, project = nullString)
 \item{solution}{solution file with absolute path}
 
 \item{project}{project file with absolute path, can be omitted to run solution only}
+
+\item{parameterList}{a list with the parameter name as key and parametervalue as value}
 }
 \description{
 Initializes a project. The absolute path to a solution file is mandatory. 
