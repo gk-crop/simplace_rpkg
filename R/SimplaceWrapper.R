@@ -89,13 +89,14 @@ initSimplace <- function(InstallationDir,
   
   libjars = paste0("simplace_core/lib/",
                    dir(paste0(InstallationDir,"simplace_core/lib/"),
-                       recursive=TRUE, pattern="*.jar|*.JAR"))
+                       recursive=TRUE, pattern=".jar|.JAR"))
   
   # add the classpaths  
   classpaths = c(
     "simplace_core/build/classes",
     "simplace_core/conf",
     "simplace_modules/build/classes",
+    "simplace_modules/conf",
     "simplace_run/build/classes",
     "simplace_run/conf",
     "simplace_core/res/files",

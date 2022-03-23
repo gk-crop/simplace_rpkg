@@ -1,3 +1,8 @@
+Version 5.0.0
+* Compatible with Simplace 5.0
+* Requires now Java >= 11.0
+* Fixed compatibility issue with RStudio 2022.02.0
+
 Version 4.4.1
 * Small bugfix
 
