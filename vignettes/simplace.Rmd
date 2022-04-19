@@ -18,6 +18,13 @@ vignette: >
 
 ---
 
+```{r setup, include=FALSE}
+withSimplace <- FALSE
+try({
+  withSimplace <- !is.na(simplace::findFirstSimplaceInstallation())
+})
+```
+
 # Introduction
 This package provides methods to interact with the modelling framework <span style="font-variant:small-caps;">Simplace</span>^[
 **S**<span style="font-variant:small-caps;">cientific</span> 
@@ -75,7 +82,7 @@ The usage of <span style="font-variant:small-caps;">Simplace</span> in R follows
 
 ## Run the simulation
 
-```{r running, results='hide'}
+```{r running, results='hide', eval=withSimplace}
 library(simplace)
 SimplaceInstallationDir <- findFirstSimplaceInstallation()
 
@@ -103,7 +110,7 @@ After specifying the directories and the solution, the framework is initialized 
 
 ## Get the result and plot it
 
-```{r plotting, fig.height=5, fig.width=6}
+```{r plotting, fig.height=5, fig.width=6, eval=withSimplace}
 resf <- resultToDataframe(result)
 
 dates <- 300:730
@@ -122,7 +129,7 @@ The result is converted to a dataframe. Interesting variables are extracted and 
 ## Get arrays and plot them as contour plot
 
 
-```{r contourplot, fig.height=5, fig.width=6}
+```{r contourplot, fig.height=5, fig.width=6, eval=withSimplace}
 resultlistexp <- resultToList(result,expand=TRUE)
 water <- resultlistexp$BOTTOM_ARRAY_VolumetricWaterContent
 wmat <- do.call(rbind,water)
