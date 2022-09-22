@@ -490,10 +490,9 @@ parameterListsToStringArray <- function (parameterLists)
 varmapToList <- function(varmap,expand=TRUE)
 {
   headerarray <- rJava::.jcall(varmap,"[S","getHeaderStrings")
-  types <- rJava::.jcall(varmap,"[S","getTypeStrings")
-  #  units <- .jcall(varmapObj,"[S","getHeaderUnits")
+  types <- getDatatypesOfResult(varmap)
+  units <- getUnitsOfResult(varmap)
   data <- rJava::.jcall(varmap,"[Ljava/lang/Object;","getDataObjects")
-  names(data) <- headerarray
   if(expand)
   {
     for(i in (1:length(headerarray)))
@@ -513,6 +512,9 @@ varmapToList <- function(varmap,expand=TRUE)
       
     }
   }
+  names(data) <- headerarray
+  attr(data,"units") <- units
+  attr(data,"datatypes") <- types
   data
 }
 
@@ -544,7 +546,8 @@ varmapToList <- function(varmap,expand=TRUE)
 #' resullist$CURRENT.DATE}
 resultToList <-function(result,expand=FALSE,from=NULL,to=NULL) {
   headerarray <- rJava::.jcall(result,"[S","getHeaderStrings")
-  types <- rJava::.jcall(result,"[S","getTypeStrings")
+  types <- getDatatypesOfResult(result)
+  units <- getUnitsOfResult(result)
   if(!is.null(from) && !is.null(to) && to>=from && from >=0)
     data <- rJava::.jcall(result,"[Ljava/lang/Object;","getDataObjects",as.integer(from),as.integer(to))
   else
@@ -574,10 +577,25 @@ resultToList <-function(result,expand=FALSE,from=NULL,to=NULL) {
     else if(types[i]=="BOOLEAN")
       data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Boolean;")
   }
-  names(data)<-headerarray
+  names(data) <- headerarray
+  attr(data,"units") <- units
+  attr(data,"datatypes") <- types
+  
   data
 }
 
+transdf <- function(l, n) {
+  if(is.list(l))
+  {
+    d <- as.data.frame(t(as.data.frame(l)))
+    names(d) <- gsub("V",paste0(n,"_"),names(d))
+  }
+  else {
+    d <- data.frame(l)
+    names(d)<-n
+  }
+  d
+}
 
 #' Convert result to dataframe
 #' 
@@ -586,6 +604,7 @@ resultToList <-function(result,expand=FALSE,from=NULL,to=NULL) {
 #' 
 #' 
 #' @param result handle to the data container returned by \code{\link{getResult}}
+#' @param expand if true columns with arrays are partially expanded
 #' @param from start of the result range, if to/from are not set, full result is returned
 #' @param to end of the result range, if to/from are not set, full result is returned
 #' @return data.frame with scalar output columns
@@ -604,35 +623,51 @@ resultToList <-function(result,expand=FALSE,from=NULL,to=NULL) {
 #' closeProject(simplace)
 #' resultframe <- resultToDataframe(result)
 #' resultframe[3,]}
-resultToDataframe <- function(result,from=NULL,to=NULL) {
-  oheaderarray <- rJava::.jcall(result,"[S","getHeaderStrings")
-  otypes <- rJava::.jcall(result,"[S","getTypeStrings")
-  if(!is.null(from) && !is.null(to) && to>=from && from >=0)
-    odata <- rJava::.jcall(result,"[Ljava/lang/Object;","getDataObjects",as.integer(from),as.integer(to))
-  else
-    odata <- rJava::.jcall(result,"[Ljava/lang/Object;","getDataObjects")
-  
-  index <- (otypes!="DOUBLEARRAY" & otypes!="INTARRAY")
-  headerarray <- oheaderarray[index]
-  types <- otypes[index]
-  data <- odata[index]
-  for(i in (1:length(headerarray)))
+resultToDataframe <- function(result,expand=FALSE, from=NULL,to=NULL) {
+  if(!expand)
   {
-    if(types[i]=="NULL")
-      data[[i]] <- NA
-    else if (types[i]=="DATE")
-      data[[i]] <- as.Date(rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/String;"))
-    else if(types[i]=="DOUBLE")
-      data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Double;")
-    else if(types[i]=="INT")
-      data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Integer;")
-    else if(types[i]=="CHAR")
-      data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/String;")
-    else if(types[i]=="BOOLEAN")
-      data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Boolean;")
+    oheaderarray <- rJava::.jcall(result,"[S","getHeaderStrings")
+    otypes <- getDatatypesOfResult(result)
+    ounits <- getUnitsOfResult(result)
+    if(!is.null(from) && !is.null(to) && to>=from && from >=0)
+      odata <- rJava::.jcall(result,"[Ljava/lang/Object;","getDataObjects",as.integer(from),as.integer(to))
+    else
+      odata <- rJava::.jcall(result,"[Ljava/lang/Object;","getDataObjects")
+    
+    index <- (otypes!="DOUBLEARRAY" & otypes!="INTARRAY" & otypes!="CHARARRAY")
+    headerarray <- oheaderarray[index]
+    types <- otypes[index]
+    units <- ounits[index]
+    data <- odata[index]
+    for(i in (1:length(headerarray)))
+    {
+      if(types[i]=="NULL")
+        data[[i]] <- NA
+      else if (types[i]=="DATE")
+        data[[i]] <- as.Date(rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/String;"))
+      else if(types[i]=="DOUBLE")
+        data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Double;")
+      else if(types[i]=="INT")
+        data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Integer;")
+      else if(types[i]=="CHAR")
+        data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/String;")
+      else if(types[i]=="BOOLEAN")
+        data[[i]] <- rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Boolean;")
+    }
+    names(data)<-headerarray
+    data <- do.call(cbind.data.frame,data)
+    attr(data,"units") <- units
+    attr(data,"datatypes") <- types
+    data
   }
-  names(data)<-headerarray
-  do.call(cbind.data.frame,data)
+  else {
+    reslist <- resultToList(result,TRUE,from=from,to=to)
+    data<-do.call(cbind,lapply(names(reslist),\(n)transdf(reslist[[n]], n)))
+    rownames(data)<-NULL
+    attr(data,"units") <- attr(reslist,"units")
+    attr(data,"datatypes") <- attr(reslist, "datatypes")
+    data
+  }
 }
 
 
@@ -644,13 +679,29 @@ resultToDataframe <- function(result,from=NULL,to=NULL) {
 #' by the variables name.
 #' 
 #' @param result handle to the data container returned by \code{\link{getResult}}
-#' @return character vector with the units
+#' @return named character vector with the units
 #' @export
 getUnitsOfResult <- function(result)
 {
   units <- rJava::.jcall(result,"[S","getHeaderUnits")
   names(units) <-  rJava::.jcall(result,"[S","getHeaderStrings")
   units
+}
+
+#' Get the datatypes of the result variables
+#' 
+#' Get the datatypes of each variable (i.e. data column).
+#' The output is a named character vector, where each element is named
+#' by the variables name.
+#' 
+#' @param result handle to the data container returned by \code{\link{getResult}}
+#' @return named character vector with the datatypes
+#' @export
+getDatatypesOfResult <- function(result)
+{
+  types <- rJava::.jcall(result,"[S","getTypeStrings")
+  names(types) <-  rJava::.jcall(result,"[S","getHeaderStrings")
+  types
 }
 
 ############# Additional functions ################

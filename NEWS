@@ -1,3 +1,8 @@
+Version 5.0.1
+* Added option "expand" in resultToDataframe to include array outputs
+* Added function to retrieve output datatypes
+* Attach units and datatypes as attributes to converted results
+
 Version 5.0.0
 * Compatible with Simplace 5.0
 * Requires now Java >= 11.0

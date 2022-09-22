@@ -26,9 +26,8 @@ For installing <span style="font-variant:small-caps;">Simplace</span>, please co
 
 A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 
-- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [java.com](http://java.com)
-- Download the console mode of <span style="font-variant:small-caps;">Simplace</span> from [www.simplace.net](http://www.simplace.net/Joomla/index.php/download)
-- Unpack the zip archive to your disk. You have to unpack the whole directory `SIMPLACE` and the directory must not be renamed.
+- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.java.net](https://openjdk.java.net/) or [adoptium.net](https://adoptium.net) (recommended).
+- Get Simplace from [www.simplace.net](http://www.simplace.net/)
 - Install the `simplace` package in R:  
 
 ```r

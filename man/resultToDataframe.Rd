@@ -4,10 +4,12 @@
 \alias{resultToDataframe}
 \title{Convert result to dataframe}
 \usage{
-resultToDataframe(result, from = NULL, to = NULL)
+resultToDataframe(result, expand = FALSE, from = NULL, to = NULL)
 }
 \arguments{
 \item{result}{handle to the data container returned by \code{\link{getResult}}}
+
+\item{expand}{if true columns with arrays are partially expanded}
 
 \item{from}{start of the result range, if to/from are not set, full result is returned}
 
