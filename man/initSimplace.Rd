@@ -5,7 +5,7 @@
 \title{Initialisation of Framework}
 \usage{
 initSimplace(
-  InstallationDir,
+  InstallationDir = findFirstSimplaceInstallation(),
   WorkDir = paste0(InstallationDir, "simplace_run/simulation/"),
   OutputDir = paste0(InstallationDir, "simplace_run/output/"),
   ProjectsDir = nullString,

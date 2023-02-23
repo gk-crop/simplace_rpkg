@@ -9,9 +9,9 @@ openProject(simplace, solution, project = nullString, parameterList = NULL)
 \arguments{
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}
 
-\item{solution}{solution file with absolute path}
+\item{solution}{solution file with absolute path or path relative to workdir}
 
-\item{project}{project file with absolute path, can be omitted to run solution only}
+\item{project}{project file with absolute path or path relative to workdir, can be omitted to run solution only}
 
 \item{parameterList}{a list with the parameter name as key and parametervalue as value}
 }

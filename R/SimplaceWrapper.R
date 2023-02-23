@@ -73,7 +73,7 @@ nullString <- rJava::.jnull(class="java/lang/String") # java null string
 #' @param force.init (re)initialize a running JVM, see \code{\link{.jinit}}
 #' @return handle to the SimplaceWrapper object
 #' @export
-initSimplace <- function(InstallationDir,
+initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
                          WorkDir = paste0(InstallationDir,"simplace_run/simulation/"),
                          OutputDir = paste0(InstallationDir,"simplace_run/output/"),
                          ProjectsDir = nullString, 
@@ -120,15 +120,31 @@ initSimplace <- function(InstallationDir,
 #' Project file is optional.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
-#' @param solution solution file with absolute path
-#' @param project project file with absolute path, can be omitted to run solution only
+#' @param solution solution file with absolute path or path relative to workdir
+#' @param project project file with absolute path or path relative to workdir, can be omitted to run solution only
 #' @param parameterList a list with the parameter name as key and parametervalue as value
 #' @seealso \code{\link{closeProject}}
 #' @export
 openProject <- function (simplace, solution, project=nullString, parameterList=NULL)
 {
+  wd <- trimws(getSimplaceDirectories(simplace)['_WORKDIR_'],"right","[/\\\\]")
+  if(!file.exists(solution)) {
+    newsol <- paste0(wd,"/",solution)
+    if(file.exists(newsol)){
+      solution <- newsol
+    }
+  }
+  
+  if(project != nullString) {
+    if(!file.exists(project)) {
+      newproj <- paste0(wd,"/",project)
+      if(file.exists(newproj)){
+        project <- newproj
+      }
+    }
+  }
   paramObject <- parameterListToStringArray(parameterList)
-  rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution, paramObject);
+  invisible(rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution, paramObject))
 }
 
 

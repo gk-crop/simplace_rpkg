@@ -1,3 +1,9 @@
+Version 5.0.2
+* parameter InstallationDir is now optional, tries to fetch it automatically
+* function initSimplaceQuick can be used for different settings without specifying directories
+* solution and project files can be given as a path relative to workdir
+* openProject returns the session invisibly
+
 Version 5.0.1
 * Added option "expand" in resultToDataframe to include array outputs
 * Added function to retrieve output datatypes
