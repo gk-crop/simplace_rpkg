@@ -1,3 +1,7 @@
+Version 5.0.3
+* Bugfix: fixed regression when opening a project with a project file
+* createSimulation returns simulation id invisibly
+
 Version 5.0.2
 * parameter InstallationDir is now optional, tries to fetch it automatically
 * function initSimplaceQuick can be used for different settings without specifying directories

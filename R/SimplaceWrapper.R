@@ -134,8 +134,8 @@ openProject <- function (simplace, solution, project=nullString, parameterList=N
       solution <- newsol
     }
   }
-  
-  if(project != nullString) {
+
+  if(is.character(project) && nchar(project)>0) {
     if(!file.exists(project)) {
       newproj <- paste0(wd,"/",project)
       if(file.exists(newproj)){
@@ -180,7 +180,7 @@ createSimulation <- function (simplace,parameterList=NULL, queue=FALSE) {
     rJava::.jcall(simplace,"V","resetSimulationQueue") 
   }
   id <- rJava::.jcall(simplace,"Lnet/simplace/sim/FWSimSimulation;","createSimulation",paramObject)
-  rJava::.jcall(id,"S","getID")
+  invisible(rJava::.jcall(id,"S","getID"))
 }
 
 
