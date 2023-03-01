@@ -87,14 +87,14 @@ findFirstSimplaceInstallation <- function (directories = c(),
 }
 
 
-#' Initialises Simplace with corresponding work- and outputdir for different settings
+#' Initialises Simplace with work- and outputdir for different settings
 #'
 #' @param setting one of "run", "modules"," lapclient" or "wininstall"
 #'
 #' @return handle to the SimplaceWrapper object
 #' @export
 #' @seealso \code{\link{initSimplace}}
-initSimplaceQuick <- function(setting="run") {
+initSimplaceDefault <- function(setting="run") {
   d <- findFirstSimplaceInstallation()
   
   if(setting=="modules") {
@@ -102,7 +102,7 @@ initSimplaceQuick <- function(setting="run") {
     od <- paste0(d,"/simplace_modules/output/")
   }
   else if(setting=="lapclient") {
-    wd <- paste0(d,"/lapclient/data/sim/")
+    wd <- paste0(d,"/lapclient/data/")
     od <- paste0(d,"/lapclient/output/")
   }
   else if(setting=="wininstall") {
