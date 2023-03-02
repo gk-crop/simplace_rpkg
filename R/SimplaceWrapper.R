@@ -678,7 +678,7 @@ resultToDataframe <- function(result,expand=FALSE, from=NULL,to=NULL) {
   }
   else {
     reslist <- resultToList(result,TRUE,from=from,to=to)
-    data<-do.call(cbind,lapply(names(reslist),\(n)transdf(reslist[[n]], n)))
+    data<-do.call(cbind,lapply(names(reslist),function(n)transdf(reslist[[n]], n)))
     rownames(data)<-NULL
     attr(data,"units") <- attr(reslist,"units")
     attr(data,"datatypes") <- attr(reslist, "datatypes")
