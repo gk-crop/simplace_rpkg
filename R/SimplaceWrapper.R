@@ -582,6 +582,11 @@ resultToList <-function(result,expand=FALSE,from=NULL,to=NULL) {
       data[[i]] <-rJava::.jevalArray(data[[i]],rawJNIRefSignature="[Ljava/lang/Double;")
       data[[i]] <-lapply(data[[i]],function(a)rJava::.jevalArray(a, simplify=TRUE,rawJNIRefSignature="[Ljava/lang/Double;"))
     }  
+    else if (expand & types[i]=="CHARARRAY")
+    {
+      data[[i]] <-rJava::.jevalArray(data[[i]],rawJNIRefSignature="[Ljava/lang/Object;")
+      data[[i]] <-lapply(data[[i]],function(a)rJava::.jevalArray(a, simplify=TRUE,rawJNIRefSignature=NULL))
+    }  
     else if (types[i]=="DATE")
       data[[i]] <- as.Date(rJava::.jevalArray(data[[i]],simplify=TRUE,rawJNIRefSignature="[Ljava/lang/String;")) 
     else if(types[i]=="DOUBLE")
