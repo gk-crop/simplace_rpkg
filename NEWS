@@ -1,3 +1,9 @@
+Version 5.0.7
+* initSimplace gives an error if InstallationDir does not contain required folders or jars
+* InstallationDir can point also to a folder containing lib subfolder with required simplace .jars
+* openProject gives an error if solution or error file does not exist
+* findSimplaceInstallation now checks more directories
+
 Version 5.0.6
 * expand CHARARRAYs too
 

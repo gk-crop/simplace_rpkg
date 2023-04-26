@@ -26,7 +26,7 @@ findSimplaceInstallations <- function (directories = c(),
 )
 {
   parents <- c(path.expand("~"),"d:","c:","e:","f:","g:",getwd())
-  subdirs <- c("workspace/","simplace/","java/simplace/")
+  subdirs <- c("workspace/","simplace/","java/simplace/","simplace/workspace/")
   standarddirs <- paste(rep(parents,length(subdirs)),rep(subdirs,each=length(parents)),sep="/")
   dirs <- if(tryStandardDirs) c(directories, standarddirs) else directories
   required <- c("simplace_core","simplace_modules")

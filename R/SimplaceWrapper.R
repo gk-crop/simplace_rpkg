@@ -73,7 +73,7 @@ nullString <- rJava::.jnull(class="java/lang/String") # java null string
 #' @param force.init (re)initialize a running JVM, see \code{\link{.jinit}}
 #' @return handle to the SimplaceWrapper object
 #' @export
-initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
+  initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
                          WorkDir = paste0(InstallationDir,"simplace_run/simulation/"),
                          OutputDir = paste0(InstallationDir,"simplace_run/output/"),
                          ProjectsDir = nullString, 
@@ -83,13 +83,33 @@ initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
                          force.init=TRUE)
 {
   
-  rJava::.jinit(parameters=javaparameters, force.init=force.init) # inits java
+  required_dir <- c("simplace_core","simplace_modules")
+  avail_dir <- dir(InstallationDir)
+  dir_ok <- length(intersect(avail_dir,required_dir))==length(required_dir)
   
-  
-  
-  libjars = paste0("simplace_core/lib/",
+  libjars <- paste0("simplace_core/lib/",
                    dir(paste0(InstallationDir,"simplace_core/lib/"),
                        recursive=TRUE, pattern=".jar|.JAR"))
+  libjars <- c(libjars, paste0("lib/",
+                   dir(paste0(InstallationDir,"lib/"),
+                       recursive=TRUE, pattern=".jar|.JAR")))
+
+  required_jars <- c("simplace_core.jar","simplace_modules.jar")
+  avail_jars <- tolower(basename(libjars))
+  jars_ok <- length(intersect(avail_jars,required_jars))==length(required_jars)
+  
+  required_jar <- c("simplace.jar")
+  jar_ok <- length(intersect(avail_jars,required_jar))==length(required_jar)
+  
+  
+  if(!(dir_ok | jars_ok | jar_ok)){
+    stop(paste0("No simplace installation found in directory '",InstallationDir,"'.
+The directory should either contain the folders 
+'simplace_core' and 'simplace_modules'
+or required .jar files in 'lib' subfolder." ))
+  }
+
+  rJava::.jinit(parameters=javaparameters, force.init=force.init) # inits java
   
   # add the classpaths  
   classpaths = c(
@@ -105,6 +125,7 @@ initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
   )
   sapply(classpaths, function(s) rJava::.jaddClassPath(paste(InstallationDir,s,sep="")))  
   
+
   # create and return an instance of RSimplaceWrapper class
   rJava::.jnew("net/simplace/sim/wrapper/SimplaceWrapper", WorkDir, OutputDir, ProjectsDir, DataDir)
 }
@@ -143,6 +164,12 @@ openProject <- function (simplace, solution, project=nullString, parameterList=N
       }
     }
   }
+  if(!file.exists(solution)) {
+    stop(paste0("Solution file '", solution, "' not found."))
+  }
+  if(is.character(project) && nchar(project)>0 && !file.exists(project)) {
+    stop(paste0("Project file '", project, "' not found."))
+  }  
   paramObject <- parameterListToStringArray(parameterList)
   invisible(rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution, paramObject))
 }

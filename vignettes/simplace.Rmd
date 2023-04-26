@@ -1,9 +1,9 @@
 ---
 title: "Interface to use Simplace from R"
 author: "Gunther Krauss"
-date: "`r Sys.setlocale('LC_ALL','English');format(Sys.Date(),format='%B %d, %Y')`"
+date: "`r Sys.setlocale('LC_ALL','English.utf8');format(Sys.Date(),format='%B %d, %Y')`"
 output: 
-  pdf_document: 
+  rmarkdown::pdf_document: 
     number_sections: yes
   rmarkdown::html_vignette:
     number_sections: yes
