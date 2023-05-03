@@ -10,7 +10,7 @@ parse the results of simulations
 }
 \details{
 Package needs a Java Runtime Environment as well as an installation of SIMPLACE. 
-See \href{http://www.simplace.net/}{www.simplace.net} for more information about SIMPLACE.
+See \href{https://www.simplace.net/}{www.simplace.net} for more information about SIMPLACE.
 }
 \examples{
   \dontrun{
@@ -41,7 +41,7 @@ See \href{http://www.simplace.net/}{www.simplace.net} for more information about
 
 }
 \references{
-\href{http://www.simplace.net/}{www.simplace.net}
+\href{https://www.simplace.net/}{www.simplace.net}
 }
 \author{
 {Gunther Krauss}

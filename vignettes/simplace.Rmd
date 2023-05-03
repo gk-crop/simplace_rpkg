@@ -34,7 +34,7 @@ This package provides methods to interact with the modelling framework <span sty
 **A**<span style="font-variant:small-caps;">dvanced</span> 
 **C**<span style="font-variant:small-caps;">rop and</span> 
 **E**<span style="font-variant:small-caps;">cosystem management</span>. 
-See [www.simplace.net](http://www.simplace.net/) for more information on Simplace]. Simplace is written in Java (and some parts in Scala) so one can access it from `R` via `rJava`. The purpose of this package is to simplify the interaction between R and Simplace, by providing functions to:
+See [www.simplace.net](https://www.simplace.net/) for more information on Simplace]. Simplace is written in Java (and some parts in Scala) so one can access it from `R` via `rJava`. The purpose of this package is to simplify the interaction between R and Simplace, by providing functions to:
 
 - initialize and configure Simplace
 - load a simulation (solution and project)
@@ -44,19 +44,17 @@ See [www.simplace.net](http://www.simplace.net/) for more information on Simplac
 
 
 # Installing the Simplace Framework
-For installing <span style="font-variant:small-caps;">Simplace</span>, please consult the webpage [www.simplace.net](http://www.simplace.net/).
+For installing <span style="font-variant:small-caps;">Simplace</span>, please consult the webpage [www.simplace.net](https://www.simplace.net/).
 A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 
-- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [java.com](http://java.com)
-- Download the console mode of <span style="font-variant:small-caps;">Simplace</span> from [www.simplace.net](http://www.simplace.net/Joomla/index.php/download)
-- Unpack the zip archive to your disk. You have to unpack the whole directory `SIMPLACE` and the directory must not be renamed.
+- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.java.net](https://openjdk.java.net/) or [adoptium.net](https://adoptium.net) (recommended).
+- Get Simplace from [www.simplace.net](https://www.simplace.net/)
 - Install the `simplace` package in R:  
 
-``` {r eval=FALSE}
+```{r eval=FALSE}
 install.packages('simplace', 
-   repos=c('http://r-forge.r-project.org','http://cran.r-project.org'))
+   repos=c('https://r-forge.r-project.org','https://cran.r-project.org'))
 ```
-
 
 
 # Basic Usage

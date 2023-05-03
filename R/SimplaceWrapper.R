@@ -12,7 +12,7 @@
 #' parse the results of simulations
 #' 
 #' Package needs a Java Runtime Environment as well as an installation of SIMPLACE. 
-#' See \href{http://www.simplace.net/}{www.simplace.net} for more information about SIMPLACE.
+#' See \href{https://www.simplace.net/}{www.simplace.net} for more information about SIMPLACE.
 #' 
 #' @author {Gunther Krauss}
 #'   
@@ -44,7 +44,7 @@
 #'     resultframe <- resultToDataframe(result)
 #'   }
 #' 
-#' @references \href{http://www.simplace.net/}{www.simplace.net}
+#' @references \href{https://www.simplace.net/}{www.simplace.net}
 #'
 #' @docType package
 #' @name simplace
@@ -164,12 +164,6 @@ openProject <- function (simplace, solution, project=nullString, parameterList=N
       }
     }
   }
-  if(!file.exists(solution)) {
-    stop(paste0("Solution file '", solution, "' not found."))
-  }
-  if(is.character(project) && nchar(project)>0 && !file.exists(project)) {
-    stop(paste0("Project file '", project, "' not found."))
-  }  
   paramObject <- parameterListToStringArray(parameterList)
   invisible(rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution, paramObject))
 }

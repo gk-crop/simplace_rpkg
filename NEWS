@@ -1,3 +1,6 @@
+Version 5.0.8
+* changed error handling of openProject 
+
 Version 5.0.7
 * initSimplace gives an error if InstallationDir does not contain required folders or jars
 * InstallationDir can point also to a folder containing lib subfolder with required simplace .jars
