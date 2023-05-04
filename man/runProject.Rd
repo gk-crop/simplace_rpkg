@@ -9,6 +9,9 @@ runProject(simplace)
 \arguments{
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}
 }
+\value{
+No return value, called for the side effect of running opened project
+}
 \description{
 Runs the simulation(s) as defined in the solution and project files. 
 There is no accessible MEMORY output, but one can load the CSV or 

@@ -15,6 +15,9 @@ openProject(simplace, solution, project = nullString, parameterList = NULL)
 
 \item{parameterList}{a list with the parameter name as key and parametervalue as value}
 }
+\value{
+java FWSimsession object
+}
 \description{
 Initializes a project. The absolute path to a solution file is mandatory. 
 Project file is optional.

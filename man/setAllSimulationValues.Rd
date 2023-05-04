@@ -11,6 +11,9 @@ setAllSimulationValues(simplace, parameterLists = NULL)
 
 \item{parameterLists}{a list of parameter lists for each simulation}
 }
+\value{
+No return value, called for the side effect of changing parameters in all simulations
+}
 \description{
 Sets values of arbitrary SimVariables in a simplace simulation.
 Useful if you want to couple simplace with another simulation 

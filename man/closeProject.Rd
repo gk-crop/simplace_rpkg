@@ -9,6 +9,9 @@ closeProject(simplace)
 \arguments{
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}
 }
+\value{
+No return value, called for the side effect of closing the simulation project
+}
 \description{
 Call to the shutDown method of the simulation.
 }

@@ -12,6 +12,9 @@ setProjectLines(simplace, lines)
 
 \item{lines}{either a vector of integers or a string of numbers separated by commas}
 }
+\value{
+No return value, called for the side effect of selecting project to be run
+}
 \description{
 You have to call the function after \code{\link{initSimplace}}
 but before \code{\link{openProject}}.

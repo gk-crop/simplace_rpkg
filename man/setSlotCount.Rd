@@ -9,6 +9,9 @@ setSlotCount(count)
 \arguments{
 \item{count}{number of processors}
 }
+\value{
+No return value, called for the side effect of setting the number of processors used for simulation runs
+}
 \description{
 Sets the number of processors that are used parallel.
 The function can be used only after \code{\link{initSimplace}} has been

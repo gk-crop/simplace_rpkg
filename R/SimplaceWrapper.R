@@ -1,18 +1,18 @@
-# Functions to communicate with Simplace
+# Functions to communicate with 'SIMPLACE'
 #
-# Provides methods to run Solutions and Projects in Simplace 
+# Provides methods to run Solutions and Projects in 'SIMPLACE' 
 # and to retrieve and convert the data 
 # 
 # @author Gunther Krauss
 ###############################################################################
 
-#' simplace: Interface to use the modelling framework SIMPLACE
+#' simplace: Interface to use the modelling framework 'SIMPLACE'
 #' 
-#' Interface to interact with the modelling framework SIMPLACE and to
+#' Interface to interact with the modelling framework 'SIMPLACE' and to
 #' parse the results of simulations
 #' 
-#' Package needs a Java Runtime Environment as well as an installation of SIMPLACE. 
-#' See \href{https://www.simplace.net/}{www.simplace.net} for more information about SIMPLACE.
+#' Package needs a Java Runtime Environment as well as an installation of 'SIMPLACE'. 
+#' See \href{https://www.simplace.net/}{www.simplace.net} for more information about 'SIMPLACE'.
 #' 
 #' @author {Gunther Krauss}
 #'   
@@ -71,7 +71,7 @@ nullString <- rJava::.jnull(class="java/lang/String") # java null string
 #' @param additionalClasspaths vector with class paths relative to InstallationDir that are to be added
 #' @param javaparameters parameters that are passed to the java virtual machine
 #' @param force.init (re)initialize a running JVM, see \code{\link{.jinit}}
-#' @return handle to the SimplaceWrapper object
+#' @returns handle to the SimplaceWrapper object
 #' @export
   initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
                          WorkDir = paste0(InstallationDir,"simplace_run/simulation/"),
@@ -144,6 +144,7 @@ or required .jar files in 'lib' subfolder." ))
 #' @param solution solution file with absolute path or path relative to workdir
 #' @param project project file with absolute path or path relative to workdir, can be omitted to run solution only
 #' @param parameterList a list with the parameter name as key and parametervalue as value
+#' @returns java FWSimsession object 
 #' @seealso \code{\link{closeProject}}
 #' @export
 openProject <- function (simplace, solution, project=nullString, parameterList=NULL)
@@ -174,6 +175,7 @@ openProject <- function (simplace, solution, project=nullString, parameterList=N
 #' Call to the shutDown method of the simulation.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
+#' @returns No return value, called for the side effect of closing the simulation project
 #' @seealso \code{\link{openProject}}
 #' @export
 closeProject <- function (simplace)
@@ -191,7 +193,7 @@ closeProject <- function (simplace)
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param parameterList a list with the parameter name as key and parametervalue as value
 #' @param queue boolean - simulation is added to queue if true, else start new queue 
-#' @return id of the created simulation
+#' @returns id of the created simulation
 #' @export
 #' @seealso \code{\link{runSimulations}}, \code{\link{resetSimulationQueue}}
 createSimulation <- function (simplace,parameterList=NULL, queue=FALSE) {
@@ -212,6 +214,7 @@ createSimulation <- function (simplace,parameterList=NULL, queue=FALSE) {
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param selectsimulation if true keeps a selected simulation
+#' @returns No return value, called for the side effect of running the simulation
 #' @export
 #' @seealso \code{\link{createSimulation}}, \code{\link{resetSimulationQueue}}
 #' @examples
@@ -241,6 +244,7 @@ runSimulations <- function(simplace, selectsimulation=FALSE)
 #' Simulation list is cleared
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
+#' @returns No return value, called for the side effect of clearing the simulation list
 #' @export
 #' @seealso \code{\link{createSimulation}}, \code{\link{runSimulations}}
 resetSimulationQueue <- function (simplace) {
@@ -255,6 +259,7 @@ resetSimulationQueue <- function (simplace) {
 #' database output.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
+#' @returns No return value, called for the side effect of running opened project
 #' @export
 #' @examples
 #' \dontrun{
@@ -277,6 +282,7 @@ runProject <- function(simplace) {
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param parameterList a list with the parameter name as key and parametervalue as value
 #' @param simulationNumber number of simulation in the queue whose parameters should be set (default first simulation)
+#' @returns No return value, called for the side effect of changing parameters in the current simulation
 #' @export
 #' @examples
 #' \dontrun{
@@ -300,7 +306,8 @@ setSimulationValues <- function(simplace, parameterList=NULL, simulationNumber =
 #' and interchange values daily.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
-#' @param parameterLists a list of parameter lists for each simulation 
+#' @param parameterLists a list of parameter lists for each simulation
+#' @returns No return value, called for the side effect of changing parameters in all simulations
 #' @export
 #' @examples
 #' \dontrun{
@@ -329,7 +336,7 @@ setAllSimulationValues <- function(simplace, parameterLists=NULL) {
 #' @param filter vector of the variable names to be included in the result. If not set, all variables are returned
 #' @param parameterList list of parameter values indexed by parameter name
 #' @param simulationNumber number of simulation in the queue that should be run stepwise (default first simulation)
-#' @return handle to the data container which has to be processed afterwards
+#' @returns handle to the data container which has to be processed afterwards
 #' @export
 #' @examples
 #' \dontrun{
@@ -376,7 +383,7 @@ stepSimulation <- function (simplace, count=1, filter=NULL, parameterList=NULL, 
 #' @param count number of steps to be performed
 #' @param filter vector of the variable names to be included in the result. If not set, all variables are returned
 #' @param parameterLists a list of parameter lists for each simulation 
-#' @return handle to an array of data containers which has to be processed afterwards
+#' @returns handle to an array of data containers which has to be processed afterwards
 #' @export
 #' @examples
 #' \dontrun{
@@ -419,7 +426,7 @@ stepAllSimulations <- function (simplace, count=1, filter=NULL, parameterLists=N
 #' get the output of the simulations.
 #' 
 #' @param simplace handle to the SimplaceWrapper object
-#' @return list with the IDs
+#' @returns list with the IDs
 #' @export
 getSimulationIDs <- function(simplace)
 {
@@ -438,7 +445,7 @@ getSimulationIDs <- function(simplace)
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param outputId id of the output. Only MEMORY outputs are accessible.
 #' @param simulationId id of the simulation
-#' @return handle to the data container which has to be processed afterwards
+#' @returns handle to the data container which has to be processed afterwards
 #' @export
 getResult <- function(simplace, outputId, simulationId = nullString)
 {
@@ -453,7 +460,7 @@ getResult <- function(simplace, outputId, simulationId = nullString)
 #' Converts a list of named parameters to a java string array
 #'
 #' @param parameterList list of parameter values indexed by parameter name
-#' @return a java object of type Object[n][2]
+#' @returns a java object of type Object[n][2]
 #' @keywords internal
 parameterListToStringArray <- function (parameterList) 
 {
@@ -484,7 +491,7 @@ parameterListToStringArray <- function (parameterList)
 #' Converts a list of named parameters to a java string array
 #'
 #' @param parameterLists list of parameter list (values indexed by parameter name)
-#' @return a java object of type Object[k][n][2]
+#' @returns a java object of type Object[k][n][2]
 #' @keywords internal
 parameterListsToStringArray <- function (parameterLists) 
 {
@@ -511,7 +518,7 @@ parameterListsToStringArray <- function (parameterLists)
 #' 
 #' @param varmap the varMap returned by \code{\link{stepSimulation}}
 #' @param expand if \code{TRUE} expand array objects to vector.
-#' @return list with parameter name as key and parameter value as value
+#' @returns list with parameter name as key and parameter value as value
 #' @export
 #' @examples
 #' \dontrun{
@@ -565,7 +572,7 @@ varmapToList <- function(varmap,expand=TRUE)
 #' @param expand if true columns with arrays are partially expanded
 #' @param from start of the result range, if to/from are not set, full result is returned
 #' @param to end of the result range, if to/from are not set, full result is returned
-#' @return list with output columns
+#' @returns list with output columns
 #' @seealso \code{\link{resultToDataframe}} returns the scalar output columns as \code{\link{data.frame}}
 #' @export
 #' @examples 
@@ -649,7 +656,7 @@ transdf <- function(l, n) {
 #' @param expand if true columns with arrays are partially expanded
 #' @param from start of the result range, if to/from are not set, full result is returned
 #' @param to end of the result range, if to/from are not set, full result is returned
-#' @return data.frame with scalar output columns
+#' @returns data.frame with scalar output columns
 #' @seealso \code{\link{resultToList}} returns the output columns as list
 #' @export
 #' @examples 
@@ -721,7 +728,7 @@ resultToDataframe <- function(result,expand=FALSE, from=NULL,to=NULL) {
 #' by the variables name.
 #' 
 #' @param result handle to the data container returned by \code{\link{getResult}}
-#' @return named character vector with the units
+#' @returns named character vector with the units
 #' @export
 getUnitsOfResult <- function(result)
 {
@@ -737,7 +744,7 @@ getUnitsOfResult <- function(result)
 #' by the variables name.
 #' 
 #' @param result handle to the data container returned by \code{\link{getResult}}
-#' @return named character vector with the datatypes
+#' @returns named character vector with the datatypes
 #' @export
 getDatatypesOfResult <- function(result)
 {
@@ -759,6 +766,7 @@ getDatatypesOfResult <- function(result)
 #' @param OutputDir directory for output (_OUTPUTDIR_)
 #' @param ProjectsDir optional directory for project data  (_PROJECTSDIR_)
 #' @param DataDir optional directory for data (_DATADIR_)
+#' @returns No return value, called for the side effect of setting framework directories
 #' @seealso \code{\link{getSimplaceDirectories}}
 #' @export
 setSimplaceDirectories <- function(simplace ,WorkDir = nullString, OutputDir = nullString, ProjectsDir = nullString, DataDir = nullString)
@@ -769,7 +777,7 @@ setSimplaceDirectories <- function(simplace ,WorkDir = nullString, OutputDir = n
 #' Get the directories (work-, output-, projects- and data-dir)
 #'
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
-#' @return character vector with the directories
+#' @returns character vector with the directories
 #' @seealso \code{\link{setSimplaceDirectories}}
 #' @export
 getSimplaceDirectories <- function(simplace)
@@ -788,6 +796,7 @@ getSimplaceDirectories <- function(simplace)
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param lines either a vector of integers or a string of numbers separated by commas
+#' @returns No return value, called for the side effect of selecting project to be run
 #' @export
 #' @examples 
 #' \dontrun{
@@ -799,12 +808,13 @@ setProjectLines <- function(simplace, lines)
   
 }
 
-#' Sets the log level of simplace
+#' Sets the log level of the framework
 #' 
 #' Sets the level of logger output - FATAL is least verbose,
 #' TRACE most verbose. You have to call \code{\link{initSimplace}} first.
 #' 
 #' @param level is a string with possible values: FATAL, ERROR, WARN, INFO, DEBUG, TRACE
+#' @returns No return value, called for the side effect of setting the log level
 #' @export
 #' @examples 
 #' \dontrun{
@@ -825,13 +835,14 @@ setLogLevel <- function(level)
 }
 
 
-#' Sets the check level of simplace
+#' Sets the check level of the framework
 #' 
 #' Sets the check level. OFF does no check at all, STRICT the most severe.
 #' You have to call \code{\link{initSimplace}} first.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param level is a string with possible values: "CUSTOM,"STRICT","INTENSE","LAZY","OFF","ONLY"
+#' @returns No return value, called for the side effect of setting the check level
 #' @export
 #' @examples 
 #' \dontrun{
@@ -848,6 +859,7 @@ setCheckLevel <- function(simplace, level)
 #' called.
 #'
 #' @param count number of processors
+#' @returns No return value, called for the side effect of setting the number of processors used for simulation runs
 #' @export
 setSlotCount <- function(count) {
   rJava::.jcall("net/simplace/sim/FWSimEngine","V","setSlotCount",as.integer(count))

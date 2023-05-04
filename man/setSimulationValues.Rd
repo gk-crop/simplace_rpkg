@@ -13,6 +13,9 @@ setSimulationValues(simplace, parameterList = NULL, simulationNumber = 1)
 
 \item{simulationNumber}{number of simulation in the queue whose parameters should be set (default first simulation)}
 }
+\value{
+No return value, called for the side effect of changing parameters in the current simulation
+}
 \description{
 Sets values of arbitrary SimVariables in a simplace simulation.
 Useful if you want to couple simplace with another simulation 

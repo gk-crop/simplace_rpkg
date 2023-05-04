@@ -9,6 +9,9 @@ resetSimulationQueue(simplace)
 \arguments{
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}
 }
+\value{
+No return value, called for the side effect of clearing the simulation list
+}
 \description{
 Simulation list is cleared
 }

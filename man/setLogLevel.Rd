@@ -2,12 +2,15 @@
 % Please edit documentation in R/SimplaceWrapper.R
 \name{setLogLevel}
 \alias{setLogLevel}
-\title{Sets the log level of simplace}
+\title{Sets the log level of the framework}
 \usage{
 setLogLevel(level)
 }
 \arguments{
 \item{level}{is a string with possible values: FATAL, ERROR, WARN, INFO, DEBUG, TRACE}
+}
+\value{
+No return value, called for the side effect of setting the log level
 }
 \description{
 Sets the level of logger output - FATAL is least verbose,

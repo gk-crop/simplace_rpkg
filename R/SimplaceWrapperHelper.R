@@ -15,7 +15,7 @@
 #' @param simulationsDir directory that contains user simulations (e.g. simplace_run)
 #' @param ignoreSimulationsDir don't check for the simulation dir
 #' @param verbose prints messages if no or more than one installation found
-#' @return matching directory/ies as character vector
+#' @returns matching directory/ies as character vector
 #' @export
 findSimplaceInstallations <- function (directories = c(), 
                                        tryStandardDirs = TRUE,
@@ -69,7 +69,7 @@ findSimplaceInstallations <- function (directories = c(),
 #' @param tryStandardDirs whether to check for typical installation directories (default)
 #' @param simulationsDir directory that contains user simulations (e.g. simplace_run)
 #' @param ignoreSimulationsDir don't check for the simulation dir
-#' @return matching directory/ies as character vector
+#' @returns matching directory/ies as character vector
 #' @export
 findFirstSimplaceInstallation <- function (directories = c(), 
                                        tryStandardDirs = TRUE,
@@ -91,7 +91,7 @@ findFirstSimplaceInstallation <- function (directories = c(),
 #'
 #' @param setting one of "run", "modules"," lapclient" or "wininstall"
 #'
-#' @return handle to the SimplaceWrapper object
+#' @returns handle to the SimplaceWrapper object
 #' @export
 #' @seealso \code{\link{initSimplace}}
 initSimplaceDefault <- function(setting="run") {

@@ -3,14 +3,14 @@
 \docType{package}
 \name{simplace}
 \alias{simplace}
-\title{simplace: Interface to use the modelling framework SIMPLACE}
+\title{simplace: Interface to use the modelling framework 'SIMPLACE'}
 \description{
-Interface to interact with the modelling framework SIMPLACE and to
+Interface to interact with the modelling framework 'SIMPLACE' and to
 parse the results of simulations
 }
 \details{
-Package needs a Java Runtime Environment as well as an installation of SIMPLACE. 
-See \href{https://www.simplace.net/}{www.simplace.net} for more information about SIMPLACE.
+Package needs a Java Runtime Environment as well as an installation of 'SIMPLACE'. 
+See \href{https://www.simplace.net/}{www.simplace.net} for more information about 'SIMPLACE'.
 }
 \examples{
   \dontrun{

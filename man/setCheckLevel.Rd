@@ -2,7 +2,7 @@
 % Please edit documentation in R/SimplaceWrapper.R
 \name{setCheckLevel}
 \alias{setCheckLevel}
-\title{Sets the check level of simplace}
+\title{Sets the check level of the framework}
 \usage{
 setCheckLevel(simplace, level)
 }
@@ -10,6 +10,9 @@ setCheckLevel(simplace, level)
 \item{simplace}{handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}}
 
 \item{level}{is a string with possible values: "CUSTOM,"STRICT","INTENSE","LAZY","OFF","ONLY"}
+}
+\value{
+No return value, called for the side effect of setting the check level
 }
 \description{
 Sets the check level. OFF does no check at all, STRICT the most severe.

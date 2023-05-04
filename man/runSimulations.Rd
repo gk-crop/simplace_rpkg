@@ -11,6 +11,9 @@ runSimulations(simplace, selectsimulation = FALSE)
 
 \item{selectsimulation}{if true keeps a selected simulation}
 }
+\value{
+No return value, called for the side effect of running the simulation
+}
 \description{
 Run the created simulations from the queue. If the queue is empty, the
 last created simulation will be run.

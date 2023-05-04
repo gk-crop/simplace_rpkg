@@ -23,6 +23,9 @@ setSimplaceDirectories(
 
 \item{DataDir}{optional directory for data (_DATADIR_)}
 }
+\value{
+No return value, called for the side effect of setting framework directories
+}
 \description{
 One can specify all or only some of the directories. 
 Only the directories specified will be set.
