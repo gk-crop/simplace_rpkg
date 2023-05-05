@@ -22,6 +22,5 @@ database output.
 simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 openProject(simplace, Solution, Project)
 runProject(simplace)
-...
 closeProject(simplace)   }
 }

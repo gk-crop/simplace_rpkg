@@ -28,11 +28,10 @@ s1 <- createSimulation(simplace, parameters,queue=TRUE)
 parameters$vLUE <- 3.2
 s2 <- createSimulation(simplace, parameters,queue=TRUE)
 runSimulations(simplace)
-...
 parameters$vLUE <- 2,8
 s3 <- createSimulation(simplace, parameters,queue=TRUE)
 runSimulations(simplace)
-...
+
 closeProject(simplace)   }
 }
 \seealso{

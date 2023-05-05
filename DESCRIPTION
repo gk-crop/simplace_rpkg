@@ -1,8 +1,8 @@
 Package: simplace
 Type: Package
 Title: Interface to Use the Modelling Framework 'SIMPLACE'
-Version: 5.0.9
-Date: 2023-05-04
+Version: 5.0.10
+Date: 2023-05-05
 Encoding: UTF-8
 Author: Gunther Krauss
 Maintainer: Gunther Krauss <guntherkrauss@uni-bonn.de>

@@ -188,7 +188,7 @@ closeProject <- function (simplace)
 #' 
 #' Creates a simulation from the opened project and substitutes
 #' the values of the parameters given in the parameter list. 
-#' Simulation will be put into the queue by default.
+#' Simulation won't be queued by default.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param parameterList a list with the parameter name as key and parametervalue as value
@@ -227,11 +227,10 @@ createSimulation <- function (simplace,parameterList=NULL, queue=FALSE) {
 #' parameters$vLUE <- 3.2
 #' s2 <- createSimulation(simplace, parameters,queue=TRUE)
 #' runSimulations(simplace)
-#' ...
 #' parameters$vLUE <- 2,8
 #' s3 <- createSimulation(simplace, parameters,queue=TRUE)
 #' runSimulations(simplace)
-#' ...
+#'
 #' closeProject(simplace)   }
 runSimulations <- function(simplace, selectsimulation=FALSE)
 {
@@ -266,7 +265,6 @@ resetSimulationQueue <- function (simplace) {
 #' simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 #' openProject(simplace, Solution, Project)
 #' runProject(simplace)
-#' ...
 #' closeProject(simplace)   }
 runProject <- function(simplace) {
   rJava::.jcall(simplace,"V","run")

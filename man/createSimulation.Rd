@@ -19,7 +19,7 @@ id of the created simulation
 \description{
 Creates a simulation from the opened project and substitutes
 the values of the parameters given in the parameter list. 
-Simulation will be put into the queue by default.
+Simulation won't be queued by default.
 }
 \seealso{
 \code{\link{runSimulations}}, \code{\link{resetSimulationQueue}}
