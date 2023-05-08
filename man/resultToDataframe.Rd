@@ -26,12 +26,10 @@ and then glued together in a dataframe. Array outputs columns are ignored.
 \dontrun{
 simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 openProject(simplace, Solution)
-parameter <- list()
-parameter$vTempLimit <- 32
-createSimulation(simplace,parameter)
+parameter <- list(vTempLimit = 32)
+simid <- createSimulation(simplace,parameter)
 runSimulations(simplace)
-simulationlist <-getSimulationIDs(simplace)
-result <- getResult(simplace,"DIAGRAM_OUT", simulationlist[[1]]);
+result <- getResult(simplace,"DIAGRAM_OUT", simid);
 closeProject(simplace)
 resultframe <- resultToDataframe(result)
 resultframe[3,]}

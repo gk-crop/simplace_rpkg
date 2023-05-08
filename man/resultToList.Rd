@@ -26,15 +26,13 @@ arrays are left unchanged, unless expand is TRUE.
 \dontrun{
 simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 openProject(simplace, Solution)
-parameter <- list()
-parameter$vTempLimit <- 32
-createSimulation(simplace,parameter)
+parameter <- list(vTempLimit = 32)
+simid <- createSimulation(simplace,parameter)
 runSimulations(simplace)
-simulationlist <-getSimulationIDs(simplace)
-result <- getResult(simplace,"DIAGRAM_OUT", simulationlist[[1]]);
 closeProject(simplace)
+result <- getResult(simplace,"DIAGRAM_OUT", simid);
 resultlist <- resultToList(result)
-resullist$CURRENT.DATE}
+resultlist$CURRENT.DATE}
 }
 \seealso{
 \code{\link{resultToDataframe}} returns the scalar output columns as \code{\link{data.frame}}

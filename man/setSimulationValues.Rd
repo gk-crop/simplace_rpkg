@@ -25,9 +25,9 @@ and interchange values daily.
 \dontrun{
 for(i in 1:365)
 {
-  param <- list(iRain=0.0)
-  setSimulationValue(simplace,param)
-  step(simplace)
+  param <- list(vBaseLUE=3.0 + i/2000)
+  setSimulationValues(simplace,param)
+  stepSimulation(simplace)
 }
 }
 

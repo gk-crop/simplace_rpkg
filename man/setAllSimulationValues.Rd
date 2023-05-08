@@ -24,10 +24,10 @@ and interchange values daily.
 for(i in 1:365)
 {
   params <- list()
-  params[[1]] <- list(iRain=0.0)
-  params[[2]] <- list(iRain=2.0)
-  setAllSimulationValue(simplace,params)
-  stepAll(simplace)
+  params[[1]] <- list(vBaseLUE=3.0 + i/2000)
+  params[[2]] <- list(vBaseLUE=3.0 - i/2000)
+  setAllSimulationValues(simplace,params)
+  stepAllSimulations(simplace)
 }
 }
 

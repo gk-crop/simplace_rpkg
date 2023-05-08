@@ -22,11 +22,10 @@ R objects. Arrays are expanded to vectors by default.
 \dontrun{
 simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 openProject(simplace, Solution)
+createSimulation(simplace)
 varmap <- stepSimulation(simplace,count=22)
 closeProject(simplace)   
-
 varlist <- varmapToList(varmap)
-
-varlist$startdate - 24*3600
+varlist$startdate - 365
 varlist$LintulBiomass.sWSO}
 }

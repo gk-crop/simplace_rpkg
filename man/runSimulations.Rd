@@ -23,12 +23,12 @@ last created simulation will be run.
 simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 openProject(simplace, Solution)
 parameters <- list()
-parameters$vLUE <- 3.0
+parameters$vBaseLUE <- 3.0
 s1 <- createSimulation(simplace, parameters,queue=TRUE)
-parameters$vLUE <- 3.2
+parameters$vBaseLUE <- 3.2
 s2 <- createSimulation(simplace, parameters,queue=TRUE)
 runSimulations(simplace)
-parameters$vLUE <- 2,8
+parameters$vBaseLUE <- 2.8
 s3 <- createSimulation(simplace, parameters,queue=TRUE)
 runSimulations(simplace)
 

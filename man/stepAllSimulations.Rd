@@ -27,8 +27,8 @@ the actual variable map. Can be called consecutively.
 simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 openProject(simplace, Solution)
 createSimulation(simplace)
-vm <- stepAllSimulation(simplace,count=22)
-vm_s <- stepAllSimulation(simplace,filter=c("CURRENT.DATE","LintulBiomass.sWSO"),count=18)
+vm <- stepAllSimulations(simplace,count=22)
+vm_s <- stepAllSimulations(simplace,filter=c("CURRENT.DATE","LintulBiomass.sWSO"),count=18)
 closeProject(simplace)   }
 
 }

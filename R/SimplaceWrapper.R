@@ -222,12 +222,12 @@ createSimulation <- function (simplace,parameterList=NULL, queue=FALSE) {
 #' simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 #' openProject(simplace, Solution)
 #' parameters <- list()
-#' parameters$vLUE <- 3.0
+#' parameters$vBaseLUE <- 3.0
 #' s1 <- createSimulation(simplace, parameters,queue=TRUE)
-#' parameters$vLUE <- 3.2
+#' parameters$vBaseLUE <- 3.2
 #' s2 <- createSimulation(simplace, parameters,queue=TRUE)
 #' runSimulations(simplace)
-#' parameters$vLUE <- 2,8
+#' parameters$vBaseLUE <- 2.8
 #' s3 <- createSimulation(simplace, parameters,queue=TRUE)
 #' runSimulations(simplace)
 #'
@@ -286,9 +286,9 @@ runProject <- function(simplace) {
 #' \dontrun{
 #' for(i in 1:365)
 #' {
-#'   param <- list(iRain=0.0)
-#'   setSimulationValue(simplace,param)
-#'   step(simplace)
+#'   param <- list(vBaseLUE=3.0 + i/2000)
+#'   setSimulationValues(simplace,param)
+#'   stepSimulation(simplace)
 #' }
 #' }
 #' 
@@ -312,10 +312,10 @@ setSimulationValues <- function(simplace, parameterList=NULL, simulationNumber =
 #' for(i in 1:365)
 #' {
 #'   params <- list()
-#'   params[[1]] <- list(iRain=0.0)
-#'   params[[2]] <- list(iRain=2.0)
-#'   setAllSimulationValue(simplace,params)
-#'   stepAll(simplace)
+#'   params[[1]] <- list(vBaseLUE=3.0 + i/2000)
+#'   params[[2]] <- list(vBaseLUE=3.0 - i/2000)
+#'   setAllSimulationValues(simplace,params)
+#'   stepAllSimulations(simplace)
 #' }
 #' }
 #' 
@@ -388,8 +388,8 @@ stepSimulation <- function (simplace, count=1, filter=NULL, parameterList=NULL, 
 #' simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 #' openProject(simplace, Solution)
 #' createSimulation(simplace)
-#' vm <- stepAllSimulation(simplace,count=22)
-#' vm_s <- stepAllSimulation(simplace,filter=c("CURRENT.DATE","LintulBiomass.sWSO"),count=18)
+#' vm <- stepAllSimulations(simplace,count=22)
+#' vm_s <- stepAllSimulations(simplace,filter=c("CURRENT.DATE","LintulBiomass.sWSO"),count=18)
 #' closeProject(simplace)   }
 #' 
 stepAllSimulations <- function (simplace, count=1, filter=NULL, parameterLists=NULL)
@@ -424,7 +424,7 @@ stepAllSimulations <- function (simplace, count=1, filter=NULL, parameterLists=N
 #' get the output of the simulations.
 #' 
 #' @param simplace handle to the SimplaceWrapper object
-#' @returns list with the IDs
+#' @returns character vector with the IDs
 #' @export
 getSimulationIDs <- function(simplace)
 {
@@ -522,12 +522,11 @@ parameterListsToStringArray <- function (parameterLists)
 #' \dontrun{
 #' simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 #' openProject(simplace, Solution)
+#' createSimulation(simplace)
 #' varmap <- stepSimulation(simplace,count=22)
 #' closeProject(simplace)   
-#' 
 #' varlist <- varmapToList(varmap)
-#' 
-#' varlist$startdate - 24*3600
+#' varlist$startdate - 365
 #' varlist$LintulBiomass.sWSO}
 varmapToList <- function(varmap,expand=TRUE)
 {
@@ -577,15 +576,13 @@ varmapToList <- function(varmap,expand=TRUE)
 #' \dontrun{
 #' simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 #' openProject(simplace, Solution)
-#' parameter <- list()
-#' parameter$vTempLimit <- 32
-#' createSimulation(simplace,parameter)
+#' parameter <- list(vTempLimit = 32)
+#' simid <- createSimulation(simplace,parameter)
 #' runSimulations(simplace)
-#' simulationlist <-getSimulationIDs(simplace)
-#' result <- getResult(simplace,"DIAGRAM_OUT", simulationlist[[1]]);
 #' closeProject(simplace)
+#' result <- getResult(simplace,"DIAGRAM_OUT", simid);
 #' resultlist <- resultToList(result)
-#' resullist$CURRENT.DATE}
+#' resultlist$CURRENT.DATE}
 resultToList <-function(result,expand=FALSE,from=NULL,to=NULL) {
   headerarray <- rJava::.jcall(result,"[S","getHeaderStrings")
   types <- getDatatypesOfResult(result)
@@ -661,12 +658,10 @@ transdf <- function(l, n) {
 #' \dontrun{
 #' simplace <- initSimplace(SimplaceInstallationDir,SimplaceWorkDir,SimplaceOutputDir)
 #' openProject(simplace, Solution)
-#' parameter <- list()
-#' parameter$vTempLimit <- 32
-#' createSimulation(simplace,parameter)
+#' parameter <- list(vTempLimit = 32)
+#' simid <- createSimulation(simplace,parameter)
 #' runSimulations(simplace)
-#' simulationlist <-getSimulationIDs(simplace)
-#' result <- getResult(simplace,"DIAGRAM_OUT", simulationlist[[1]]);
+#' result <- getResult(simplace,"DIAGRAM_OUT", simid);
 #' closeProject(simplace)
 #' resultframe <- resultToDataframe(result)
 #' resultframe[3,]}

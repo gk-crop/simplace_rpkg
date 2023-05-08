@@ -1,4 +1,7 @@
-Version 5.0.9
+Version 5.0.11
+* revised all examples in documentation
+
+Version 5.0.10
 * changed documentation to comply with CRAN requirements
 
 Version 5.0.9

@@ -10,7 +10,7 @@ getSimulationIDs(simplace)
 \item{simplace}{handle to the SimplaceWrapper object}
 }
 \value{
-list with the IDs
+character vector with the IDs
 }
 \description{
 Returns a vector with the IDs of the simulations. IDs are required to
