@@ -1,3 +1,6 @@
+[![CRAN](http://www.r-pkg.org/badges/version/simplace)](https://cran.r-project.org/package=simplace)
+[![simplace status badge](https://gk-crop.r-universe.dev/badges/simplace)](https://gk-crop.r-universe.dev)
+
 # simplace <img src="man/figures/logo.svg" align="right" height="139" />
 
 R package to interact with the modeling framework Simplace
