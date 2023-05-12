@@ -1,5 +1,8 @@
+<!-- badges: start -->
 [![CRAN](http://www.r-pkg.org/badges/version/simplace)](https://cran.r-project.org/package=simplace)
 [![simplace status badge](https://gk-crop.r-universe.dev/badges/simplace)](https://gk-crop.r-universe.dev)
+[![R-CMD-check](https://github.com/gk-crop/simplace_rpkg/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gk-crop/simplace_rpkg/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 # simplace <img src="man/figures/logo.svg" align="right" height="139" />
 
@@ -29,7 +32,7 @@ For installing <span style="font-variant:small-caps;">Simplace</span>, please co
 
 A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 
-- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.java.net](https://openjdk.java.net/) or [adoptium.net](https://adoptium.net) (recommended).
+- If you don't have installed Java, please install an appropriate version of the (JRE or JDK) from [openjdk.org](https://openjdk.org/) or [adoptium.net](https://adoptium.net) (recommended).
 - Get Simplace from [www.simplace.net](https://www.simplace.net/)
 - Install the `simplace` package in R:  
 
