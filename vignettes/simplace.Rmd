@@ -1,14 +1,14 @@
 ---
 title: "Interface to use Simplace from R"
 author: "Gunther Krauss"
-date: "`r Sys.setlocale('LC_ALL','English.utf8');format(Sys.Date(),format='%B %d, %Y')`"
+date: "`r format(Sys.Date(),format='%B %d, %Y')`"
 output: 
-  rmarkdown::pdf_document: 
-    number_sections: yes
   rmarkdown::html_vignette:
     number_sections: yes
     fig-width: 7
     fig-height: 6
+  rmarkdown::pdf_document: 
+    number_sections: yes
   
 
 vignette: >
