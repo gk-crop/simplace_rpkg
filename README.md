@@ -37,8 +37,7 @@ A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 - Install the `simplace` package in R:  
 
 ```r
-install.packages('simplace', 
-   repos=c('https://r-forge.r-project.org','https://cran.r-project.org'))
+install.packages('simplace')
 ```
 
 The most recent development version can be installed from github:
