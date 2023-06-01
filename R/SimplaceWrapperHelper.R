@@ -106,6 +106,14 @@ initSimplaceDefault <- function(setting="run") {
     od <- paste0(d,"/lapclient/output/")
   }
   else if(setting=="wininstall") {
+    d <- paste0(Sys.getenv('LOCALAPPDATA'),'/Programs/SIMPLACE64/')
+    if(!dir.exists(paste0(d,'lib/'))) {
+      d <- paste0(Sys.getenv('ProgramFiles'),'/SIMPLACE64/')
+      if(!dir.exists(paste0(d,'lib/'))) {
+        d <- findFirstSimplaceInstallation()
+      }
+    }
+    
     hd <- Sys.getenv("USERPROFILE")
     wd <- paste0(hd,"/SIMPLACE_WORK/")
     od <- paste0(hd,"/SIMPLACE_WORK/output/")

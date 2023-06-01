@@ -52,7 +52,7 @@ A brief guide to install <span style="font-variant:small-caps;">Simplace</span>:
 - Install the `simplace` package in R:  
 
 ```{r eval=FALSE}
-install.packages('simplace'))
+install.packages('simplace')
 ```
 
 
@@ -108,10 +108,10 @@ After specifying the directories and the solution, the framework is initialized 
 ## Get the result and plot it
 
 ```{r plotting, fig.height=5, fig.width=6, eval=withSimplace}
-resf <- resultToDataframe(result)
+simdata <- resultToDataframe(result)
 
 dates <- 300:730
-weights <- resf[dates,
+weights <- simdata[dates,
     c("TOP_LINE_Roots","TOP_LINE_Leaves","TOP_LINE_Stems","TOP_LINE_StorageOrgans")]
 matplot(dates,weights,type="l",xlab="Days",ylab="Weight [g/m2]",main="Simulated Biomass")
 legend(300,800,legend=c("Roots","Leaves","Stems","Storage Organs"),lty=1:4,col=1:4)
