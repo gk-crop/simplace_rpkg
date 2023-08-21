@@ -1,3 +1,6 @@
+Version 5.0.13
+* fix in package documentation
+
 Version 5.0.12
 * initialisation with setting 'windir' uses the version from default program directories
 

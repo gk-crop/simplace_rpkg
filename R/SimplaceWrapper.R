@@ -48,7 +48,7 @@
 #'
 #' @docType package
 #' @name simplace
-NULL
+"_PACKAGE"
 
 ########## Some helper definitions for calling/parsing ############
 

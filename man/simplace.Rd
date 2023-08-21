@@ -3,6 +3,7 @@
 \docType{package}
 \name{simplace}
 \alias{simplace}
+\alias{simplace-package}
 \title{simplace: Interface to use the modelling framework 'SIMPLACE'}
 \description{
 Interface to interact with the modelling framework 'SIMPLACE' and to
@@ -42,6 +43,14 @@ See \href{https://www.simplace.net/}{www.simplace.net} for more information abou
 }
 \references{
 \href{https://www.simplace.net/}{www.simplace.net}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/gk-crop/simplace_rpkg/}
+  \item \url{https://r-forge.r-project.org/projects/simplace/}
+}
+
 }
 \author{
 {Gunther Krauss}
