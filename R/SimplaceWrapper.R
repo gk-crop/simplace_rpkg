@@ -460,6 +460,7 @@ getResult <- function(simplace, outputId, simulationId = nullString)
 #' @param parameterList list of parameter values indexed by parameter name
 #' @returns a java object of type Object[n][2]
 #' @keywords internal
+#' @noRd
 parameterListToStringArray <- function (parameterList) 
 {
   if(!is.null(parameterList) && length(parameterList)>0)
@@ -491,6 +492,7 @@ parameterListToStringArray <- function (parameterList)
 #' @param parameterLists list of parameter list (values indexed by parameter name)
 #' @returns a java object of type Object[k][n][2]
 #' @keywords internal
+#' @noRd
 parameterListsToStringArray <- function (parameterLists) 
 {
   if(!is.null(parameterLists) && length(parameterLists)>0)
