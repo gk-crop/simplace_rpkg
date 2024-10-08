@@ -2,8 +2,8 @@
 % Please edit documentation in R/SimplaceWrapper.R
 \docType{package}
 \name{simplace}
-\alias{simplace}
 \alias{simplace-package}
+\alias{simplace}
 \title{simplace: Interface to use the modelling framework 'SIMPLACE'}
 \description{
 Interface to interact with the modelling framework 'SIMPLACE' and to

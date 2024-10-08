@@ -16,11 +16,14 @@ openProject(simplace, solution, project = nullString, parameterList = NULL)
 \item{parameterList}{a list with the parameter name as key and parametervalue as value}
 }
 \value{
-java FWSimsession object
+invisibly a list with java FWSimsession object as well as the solution, project and parameterList
 }
 \description{
-Initializes a project. The absolute path to a solution file is mandatory. 
-Project file is optional.
+Initializes a project. Solution is mandatory, project is optional.
+Solution and project files can be specified by giving absolute paths or paths relative to
+the simplace directory.
+Instead of using solution and project files, one can use the content of the solution / project
+directly as a string or a "xml_document" class.
 }
 \seealso{
 \code{\link{closeProject}}

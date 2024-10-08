@@ -70,7 +70,7 @@ nullString <- rJava::.jnull(class="java/lang/String") # java null string
 #' @param DataDir optional directory for data (_DATADIR_)
 #' @param additionalClasspaths vector with class paths relative to InstallationDir that are to be added
 #' @param javaparameters parameters that are passed to the java virtual machine
-#' @param force.init (re)initialize a running JVM, see \code{\link{.jinit}}
+#' @param force.init (re)initialize a running JVM, see \code{\link[rJava]{.jinit}}
 #' @returns handle to the SimplaceWrapper object
 #' @export
   initSimplace <- function(InstallationDir = findFirstSimplaceInstallation(),
@@ -137,36 +137,50 @@ or required .jar files in 'lib' subfolder." ))
 
 #' Opens a Simplace project
 #' 
-#' Initializes a project. The absolute path to a solution file is mandatory. 
-#' Project file is optional.
+#' Initializes a project. Solution is mandatory, project is optional.
+#' Solution and project files can be specified by giving absolute paths or paths relative to
+#' the simplace directory.
+#' Instead of using solution and project files, one can use the content of the solution / project
+#' directly as a string or a "xml_document" class.
 #' 
 #' @param simplace handle to the SimplaceWrapper object returned by \code{\link{initSimplace}}
 #' @param solution solution file with absolute path or path relative to workdir
 #' @param project project file with absolute path or path relative to workdir, can be omitted to run solution only
 #' @param parameterList a list with the parameter name as key and parametervalue as value
-#' @returns java FWSimsession object 
+#' @returns invisibly a list with java FWSimsession object as well as the solution, project and parameterList
 #' @seealso \code{\link{closeProject}}
 #' @export
 openProject <- function (simplace, solution, project=nullString, parameterList=NULL)
 {
+  rsolution <- ifelse("xml_document" %in% class(solution), as.character(solution), solution)
+  rproject <- if ("xml_document" %in% class(project)){ as.character(project)} else{project}
+  
+  
+  
   wd <- trimws(getSimplaceDirectories(simplace)['_WORKDIR_'],"right","[/\\\\]")
-  if(!file.exists(solution)) {
-    newsol <- paste0(wd,"/",solution)
+  if(!file.exists(rsolution)) {
+    newsol <- paste0(wd,"/",rsolution)
     if(file.exists(newsol)){
-      solution <- newsol
+      rsolution <- newsol
     }
   }
 
-  if(is.character(project) && nchar(project)>0) {
-    if(!file.exists(project)) {
-      newproj <- paste0(wd,"/",project)
+  if(is.character(rproject) && nchar(rproject)>0) {
+    if(!file.exists(rproject)) {
+      newproj <- paste0(wd,"/",rproject)
       if(file.exists(newproj)){
-        project <- newproj
+        rproject <- newproj
       }
     }
   }
   paramObject <- parameterListToStringArray(parameterList)
-  invisible(rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", project, solution, paramObject))
+  invisible(
+    list(
+      session=rJava::.jcall(simplace, "Lnet/simplace/sim/FWSimSession;", "prepareSession", rproject, rsolution, paramObject),
+      solution=rsolution, 
+      project=ifelse(rJava::is.jnull(project),"",rproject), 
+      parameterList=parameterList)
+    )
 }
 
 

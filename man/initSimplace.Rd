@@ -30,7 +30,7 @@ initSimplace(
 
 \item{javaparameters}{parameters that are passed to the java virtual machine}
 
-\item{force.init}{(re)initialize a running JVM, see \code{\link{.jinit}}}
+\item{force.init}{(re)initialize a running JVM, see \code{\link[rJava]{.jinit}}}
 }
 \value{
 handle to the SimplaceWrapper object

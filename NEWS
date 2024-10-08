@@ -1,3 +1,10 @@
+Version 5.1.0
+* compatible with Simplace 5.1
+* requires Java 17 or above (as Simplace 5.1 does)
+* small fixes in documentation
+* openProject acceps solution and project additionally as xml_document
+* openProject returns not only the java session, but a list including solution and project (full path or xml text)
+
 Version 5.0.13
 * fix in package documentation
 
