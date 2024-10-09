@@ -1,15 +1,18 @@
 Package: simplace
 Type: Package
 Title: Interface to Use the Modelling Framework 'SIMPLACE'
-Version: 5.1.0
-Date: 2024-10-07
+Version: 5.1.2
+Date: 2024-10-09
 Encoding: UTF-8
-Author: Gunther Krauss
+Authors@R: person(given = "Gunther",
+                    family = "Krauss",
+                    role = c("aut", "cre"),
+                    email = "guntherkrauss@uni-bonn.de")
 Maintainer: Gunther Krauss <guntherkrauss@uni-bonn.de>
 Description: Interface to interact with the modelling framework 'SIMPLACE' and to
     parse the results of simulations.
 License: GPL-2
-URL: https://github.com/gk-crop/simplace_rpkg/, https://r-forge.r-project.org/projects/simplace/
+URL: https://github.com/gk-crop/simplace_rpkg/
 SystemRequirements: Java (>= 17.0)
 Imports:
     rJava (>= 0.9-13)

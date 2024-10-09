@@ -1,3 +1,9 @@
+Version 5.1.2
+* small fixes for CRAN
+
+Version 5.1.1
+* fixed DESCRIPTION for CRAN
+
 Version 5.1.0
 * compatible with Simplace 5.1
 * requires Java 17 or above (as Simplace 5.1 does)
